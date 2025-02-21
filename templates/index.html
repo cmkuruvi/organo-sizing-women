@@ -48,11 +48,12 @@
             const API_URL = "https://your-replit-url.repl.co/predict"; // Update with your actual API URL
 
             // Get user input
-            const weight = document.getElementById("weight").value;
-            const height = document.getElementById("height").value;
-            const bust = document.getElementById("bust").value * 2.54; // Convert to cm
-            const stomach = document.getElementById("stomach").value * 2.54; // Convert to cm
-            const hips = document.getElementById("hips").value * 2.54; // Convert to cm
+            const weight = parseFloat(document.getElementById("weight").value);
+const height = parseFloat(document.getElementById("height").value);
+const bust = parseFloat(document.getElementById("bust").value) * 2.54; // Convert inches to cm
+const stomach = parseFloat(document.getElementById("stomach").value) * 2.54;
+const hips = parseFloat(document.getElementById("hips").value) * 2.54;
+
 
             // Validate inputs
             if (!weight || !height || !bust || !stomach || !hips) {
