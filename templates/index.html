@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Measurement Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        input, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Enter Your Measurements</h2>
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <input type="number" id="height" placeholder="Height (cm)">
+        <input type="number" id="bust" placeholder="Bust (inches)">
+        <input type="number" id="stomach" placeholder="Stomach (inches)">
+        <input type="number" id="hips" placeholder="Hips (inches)">
+        <button onclick="getPredictions()">Get Predictions</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function getPredictions() {
+            const API_URL = "https://your-replit-url.repl.co/predict"; // Update with your actual API URL
+
+            // Get user input
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+            const bust = document.getElementById("bust").value * 2.54; // Convert to cm
+            const stomach = document.getElementById("stomach").value * 2.54; // Convert to cm
+            const hips = document.getElementById("hips").value * 2.54; // Convert to cm
+
+            // Validate inputs
+            if (!weight || !height || !bust || !stomach || !hips) {
+                document.getElementById("result").innerHTML = "⚠️ Please fill in all fields.";
+                return;
+            }
+
+            // Prepare data for API
+            const requestData = {
+                Weight: parseFloat(weight),
+                Height: parseFloat(height),
+                Bust: parseFloat(bust),
+                Stomach: parseFloat(stomach),
+                Hips: parseFloat(hips)
+            };
+
+            // Send request to API
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(requestData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    let resultHTML = "<h3>Predicted Measurements</h3>";
+                    for (const [key, value] of Object.entries(data["Predicted Measurements (CM)"])) {
+                        resultHTML += `<p><strong>${key}:</strong> ${value.toFixed(1)} cm</p>`;
+                    }
+                    document.getElementById("result").innerHTML = resultHTML;
+                } else {
+                    document.getElementById("result").innerHTML = "⚠️ Error: " + data.error;
+                }
+            } catch (error) {
+                document.getElementById("result").innerHTML = "⚠️ Failed to connect to API.";
+            }
+        }
+    </script>
+
+</body>
+</html>
