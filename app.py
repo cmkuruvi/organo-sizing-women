@@ -11,6 +11,9 @@ app = Flask(__name__)
 file_path = "Sizing Spreadsheet - Women_ Height-Weight.csv"
 df = pd.read_csv(file_path)
 
+# Remove unwanted columns
+df = df.dropna(axis=1, how="all")
+
 # Define Features and Target Variables
 X = df[['Weight', 'Height', 'Bust', 'Stomach', 'Hips']]
 y = df[['Neck', 'Sleeve Length (F/S)', 'Shoulder Width', 'Torso Length', 'Bicep', 'Wrist',
@@ -64,4 +67,4 @@ def predict():
 
 # Run Flask app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080, debug=True)
