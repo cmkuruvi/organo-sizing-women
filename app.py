@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn import metrics
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -26,7 +25,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = LinearRegression()
 model.fit(X_train, y_train)
 
-# API Route for Prediction
+# API Route: Home Page
+@app.route('/')
+def home():
+    return "Welcome to the Body Measurement Prediction API!"
+
+# API Route: Predict Measurements
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
