@@ -30,11 +30,11 @@ st.title("👗 AI-Powered Body Measurement Predictor - WOMEN")
 st.write("Enter your body measurements below to get AI-generated size recommendations.")
 
 # User Inputs
-weight = st.number_input("Enter Weight (kg)", min_value=30.0, max_value=150.0, step=0.1)
-height = st.number_input("Enter Height (cm)", min_value=130.0, max_value=220.0, step=0.1)
-bust = st.number_input("Enter Bust (inches)", min_value=20.0, max_value=60.0, step=0.1) * 2.54
-stomach = st.number_input("Enter Stomach (inches)", min_value=20.0, max_value=60.0, step=0.1) * 2.54
-hips = st.number_input("Enter Hips (inches)", min_value=20.0, max_value=60.0, step=0.1) * 2.54
+weight = st.number_input("Enter Weight (kg)", min_value=40, max_value=120, step=1)
+height = st.number_input("Enter Height (cm)", min_value=140, max_value=220, step=1)
+bust = st.number_input("Enter Bust (inches)", min_value=25, max_value=50, step=1) * 2.54
+stomach = st.number_input("Enter Stomach (inches)", min_value=25, max_value=50, step=1) * 2.54
+hips = st.number_input("Enter Hips (inches)", min_value=25, max_value=50, step=1) * 2.54
 
 # Prediction button
 if st.button("Predict Measurements"):
