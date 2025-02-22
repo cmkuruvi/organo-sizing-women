@@ -23,7 +23,7 @@ model = LinearRegression()
 model.fit(X_train, y_train)
 
 # Streamlit UI
-st.title("👗 AI-Powered Body Measurement Predictor")
+st.title("👗 AI-Powered Body Measurement Predictor - WOMEN")
 
 st.write("Enter your body measurements below to get AI-generated size recommendations.")
 
