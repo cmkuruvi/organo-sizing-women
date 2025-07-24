@@ -37,7 +37,7 @@ model = LinearRegression()
 model.fit(X_train, y_train)
 
 # Streamlit UI
-st.image("2.png", width=200)
+st.image("Fitsall Logo new 1.png", width=300)
 st.title("👗 AI-Powered Body Measurement Predictor - WOMEN")
 
 st.write("Enter your body measurements below to get AI-generated size recommendations.")
