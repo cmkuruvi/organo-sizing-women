@@ -14,7 +14,7 @@ VALID_PASSWORD = "ohdrog"
 
 # Check password before allowing access
 if password != VALID_PASSWORD:
-    st the correct password to proceed!")
+    st.sidebar.warning("⚠️ Enter the correct password to proceed!")
     st.stop()
 
 # Load dataset
