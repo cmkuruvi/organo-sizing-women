@@ -48,11 +48,11 @@ col1, col2 = st.columns(2)
 with col1:
     # Basic measurements
     st.subheader("📏 Body Measurements")
-    weight = st.number_input("Enter Weight (kg)", min_value=40, max_value=120, step=1,help="Test: Need this for estimating body proportion distribution")
-    height = st.number_input("Enter Height (cm)", min_value=140, max_value=220, step=1)
-    bust = st.number_input("Enter Bust (inches)", min_value=25, max_value=50, step=1) * 2.54
-    stomach = st.number_input("Enter Stomach (inches)", min_value=25, max_value=50, step=1) * 2.54
-    hips = st.number_input("Enter Hips (inches)", min_value=25, max_value=50, step=1) * 2.54
+    weight = st.number_input("Enter Weight (kg)", min_value=40, max_value=120, step=1, help="TEST: Need this for estimating body proportion distribution")
+    height = st.number_input("Enter Height (cm)", min_value=140, max_value=220, step=1, help="TEST: ")
+    bust = st.number_input("Enter Bust (inches)", min_value=25, max_value=50, step=1, help="TEST: ") * 2.54
+    stomach = st.number_input("Enter Stomach (inches)", min_value=25, max_value=50, step=1,help="TEST: ") * 2.54
+    hips = st.number_input("Enter Hips (inches)", min_value=25, max_value=50, step=1, help="TEST: ") * 2.54
 
 with col2:
     # Body type selection
