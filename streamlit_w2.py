@@ -449,13 +449,11 @@ with st.expander("Learn about body types and fitting"):
     **Body Types Explained:**
     """)
     
-    # Provision for adding body type images as requested
-    st.markdown("*📸 Upload body type guide images here:*")
-    
-    # Placeholder for body type images
-    uploaded_file = st.file_uploader("Choose body type guide image", type=['png', 'jpg', 'jpeg'])
-    if uploaded_file is not None:
-        st.image(uploaded_file, caption="Body Types Visual Guide", use_column_width=True)
+# Body types visual guide
+st.markdown("*📸 Body Types Visual Guide:*")
+st.image("body_types_guide.png", 
+         caption="Body Types Visual Guide", 
+         use_container_width=True)
     
     st.write("""
     - **Apple**: Fuller bust and midsection, slender legs
