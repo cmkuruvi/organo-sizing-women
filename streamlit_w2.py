@@ -449,11 +449,9 @@ with st.expander("Learn about body types and fitting"):
     **Body Types Explained:**
     """)
     
-# Body types visual guide
-st.markdown("*📸 Body Types Visual Guide:*")
-st.image("body_types_guide.png", 
-         caption="Body Types Visual Guide", 
-         use_container_width=True)
+    # Body types visual guide
+    st.markdown("*📸 Body Types Visual Guide:*")
+    st.image("body_type_guides.png", use_container_width=True)
     
     st.write("""
     - **Apple**: Fuller bust and midsection, slender legs
