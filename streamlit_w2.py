@@ -51,13 +51,10 @@ with col1:
     hips = st.number_input("Enter Hips (inches)", min_value=25, max_value=50, step=1) * 2.54
 
 with col2:
-# Body type selection
-st.subheader("👤 Body Type & Fit Preferences")
-body_type = st.selectbox(
-"Select Your Body Type",
-options=["Apple", "Pear", "Hourglass", "Rectangle", "Inverted Triangle"],
-help="Select your body type for more accurate fitting recommendations"
-)
+    # Body type selection
+    st.subheader("👤 Body Type & Fit Preferences")
+    body_type = st.selectbox("Select Your Body Type",
+    options=["Apple", "Pear", "Hourglass", "Rectangle", "Inverted Triangle"], help="Select your body type for more accurate fitting recommendations")
 
 # Fit preferences
 fit_preference = st.radio(
