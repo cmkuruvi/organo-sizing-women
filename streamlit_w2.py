@@ -136,9 +136,9 @@ def calculate_garment_measurements(pred_sleeve, pred_bicep, pred_leg_length, bod
     garment_thigh_cm = garment_thigh_in * 2.54
     
     # Shorts calculations (adjusted for women's proportions - typically shorter)
-    shorts_length = (pred_leg_length - 50) * 0.8  # Women's shorts typically shorter than men's
+    shorts_length = (pred_leg_length - 50) * 0.9  # Women's shorts typically shorter than men's
     shorts_leg_opening_base = garment_thigh_cm * 1.15  # More generous opening for women
-    shorts_inseam = shorts_length - (pred_rise / 2)
+    shorts_inseam = shorts_length - (pred_rise / 2.5)
     
     # Pant calculations
     pant_leg_opening_base = garment_thigh_cm * 0.72  # Slightly wider than men's for women's fashion
