@@ -81,11 +81,13 @@ with col2:
         help="If you know your thigh measurement, enter it for comparison"
     )
 
+LEG_LENGTH_ADJUSTMENT_MULTIPLIER = 0.97
+
 # Body type adjustment factors based on research
 BODY_TYPE_ADJUSTMENTS = {
     "Apple": {
         "waist_adjustment": 1.05,  # 5% increase for apple shapes
-        "thigh_adjustment": 1.02,  # 2% increase
+        "thigh_adjustment": 1.03,  # 3% increase (fitsall)
         "hip_adjustment": 1.03,    # 3% increase
         "rise_adjustment": 1.04    # 4% increase for higher waist preference
     },
@@ -97,7 +99,7 @@ BODY_TYPE_ADJUSTMENTS = {
     },
     "Hourglass": {
         "waist_adjustment": 0.96,  # 4% decrease for defined waist
-        "thigh_adjustment": 1.04,  # 4% increase
+        "thigh_adjustment": 1.06,  # 6% increase (fitsall)
         "hip_adjustment": 1.04,    # 4% increase
         "rise_adjustment": 1.01    # 1% increase
     },
@@ -109,7 +111,7 @@ BODY_TYPE_ADJUSTMENTS = {
     },
     "Inverted Triangle": {
         "waist_adjustment": 1.01,  # 1% increase
-        "thigh_adjustment": 0.99,  # 1% decrease for slimmer lower body
+        "thigh_adjustment": 0.98,  # 2% decrease for slimmer lower body (fitsall)
         "hip_adjustment": 0.98,    # 2% decrease
         "rise_adjustment": 1.00    # No adjustment
     }
@@ -136,13 +138,14 @@ def calculate_garment_measurements(pred_sleeve, pred_bicep, pred_leg_length, bod
     garment_thigh_cm = garment_thigh_in * 2.54
     
     # Shorts calculations (adjusted for women's proportions - typically shorter)
-    shorts_length = (pred_leg_length - 50) * 0.9  # Women's shorts typically shorter than men's
+    adj_leg_length = pred_leg_length * LEG_LENGTH_ADJUSTMENT_MULTIPLIER
+    shorts_length = (adj_leg_length - 50) * 0.9  # Women's shorts typically shorter than men's
     shorts_leg_opening_base = garment_thigh_cm * 1.15  # More generous opening for women
     shorts_inseam = shorts_length - (pred_rise / 2.5)
     
     # Pant calculations
     pant_leg_opening_base = garment_thigh_cm * 0.72  # Slightly wider than men's for women's fashion
-    pant_inseam = pred_leg_length - (pred_rise / 2)
+    pant_inseam = adj_leg_length - (pred_rise / 2)
     
     # Apply fit adjustments
     fit_multipliers = {
@@ -232,10 +235,11 @@ if st.button("Predict Measurements", type="primary"):
             body_type_adj=adjustments["rise_adjustment"],
             fit_adj=fit_adj["multiplier"]
         )
-        leg_length_in, leg_length_cm = convert_cm_to_inches(predicted_values[0][7] - 3.8)
+        leg_length_in, leg_length_cm = convert_cm_to_inches(predicted_values[0][7] * LEG_LENGTH_ADJUSTMENT_MULTIPLIER)
+        # Waist: follow fitsall approach — use customer input × fit multiplier (no body type adj)
         waist_in, waist_cm = convert_cm_to_inches(
-            predicted_values[0][8],
-            body_type_adj=adjustments["waist_adjustment"],
+            stomach,
+            body_type_adj=1.0,
             fit_adj=fit_adj["multiplier"]
         )
         thigh_in, thigh_cm = convert_cm_to_inches(
